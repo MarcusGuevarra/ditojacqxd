@@ -12,11 +12,16 @@ resize_height = 64
 resize_width = 64
 batch_size = 2
 
-# Paths
-train_directory = 'data/edge/train/'
-test_directory = 'data/edge/test/'
-
 # Functions
+def edge_detection():
+    main('edge')
+
+def grayscale():
+    main('gray')
+
+def original():
+    main('original')
+
 
 def create_datasets(train_directory, test_directory):
     """Creates training and testing datasets."""
@@ -115,7 +120,11 @@ def plot_results(images, predictions):
 
 # Main Execution
 
-def main():
+def main(mode):
+    # Paths
+    train_directory = 'data/' + mode + '/train/'
+    test_directory = 'data/' + mode + '/test/'
+
     # Create datasets
     ds_train, ds_test = create_datasets(train_directory, test_directory)
 
