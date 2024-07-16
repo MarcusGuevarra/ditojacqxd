@@ -1,29 +1,32 @@
 import tkinter as tk
-# import camerapy2
 
 # Create the main window
 root = tk.Tk()
-root.title("Simple GUI")
+root.title("AUTOMATIC FOOD OIL DETECTION")
 
 # Set the size of the window
 root.geometry("750x500")
 root.resizable(True,True)
 
 # Create a label
-label = tk.Label(root, text="Hello, Tkinter!")
+label = tk.Label(root, text="Select which type of images to process through the AI:")
 label.pack(pady=20)
+
+from camerapy2 import capture_image
+
+camera_button = tk.Button(root, text="CAPTURE", command=capture_image)
+camera_button.pack(pady=30)
 
 from AImodel import edge_detection, original, grayscale
 
-button_1 = tk.Button(root, text="EDGE DETECTION", command=edge_detection)
-button_1.pack(pady=30)
+original_button = tk.Button(root, text="ORIGINAL", command=original)
+original_button.pack(pady=30)
 
-button_2 = tk.Button(root, text="GRAYSCALE", command=grayscale)
-button_2.pack(pady=30)
+gray_button = tk.Button(root, text="GRAYSCALE", command=grayscale)
+gray_button.pack(pady=30)
 
-button_3 = tk.Button(root, text="ORIGINAL", command=original)
-button_3.pack(pady=30)
-
+edge_button = tk.Button(root, text="EDGE DETECTION", command=edge_detection)
+edge_button.pack(pady=30)
 
 # Run the application
 root.mainloop()
