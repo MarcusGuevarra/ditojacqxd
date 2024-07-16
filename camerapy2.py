@@ -10,7 +10,7 @@ global currentframe
 
 
 def filename(mode):
-    image_name = './data/' + mode + '/2_' + str(currentframe) + '.png'
+    image_name = './data/' + mode + '/test/2_' + str(currentframe) + '.png'
     return image_name
 
 
