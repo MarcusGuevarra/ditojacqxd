@@ -14,13 +14,14 @@ batch_size = 2
 
 # Functions
 def edge_detection():
+    # close previous windows
     main('edge')
 
 def grayscale():
     main('gray')
 
 def original():
-    main('original')
+    main('orig')
 
 
 def create_datasets(train_directory, test_directory):
