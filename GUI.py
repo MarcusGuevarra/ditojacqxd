@@ -1,5 +1,5 @@
 import tkinter as tk
-from camerapy2 import capture
+# import camerapy2
 
 # Create the main window
 root = tk.Tk()
@@ -13,27 +13,15 @@ root.resizable(True,True)
 label = tk.Label(root, text="Hello, Tkinter!")
 label.pack(pady=20)
 
-# Create a button
+from AImodel import edge_detection, original, grayscale
 
-def on_button_click_1():
-    capture()
-
-def on_button_click_2():
-    capture()
-
-def on_button_click_3():
-    capture()
-
-
-
-
-button_1 = tk.Button(root, text="Click Me", command=on_button_click_1)
+button_1 = tk.Button(root, text="EDGE DETECTION", command=edge_detection)
 button_1.pack(pady=30)
 
-button_2 = tk.Button(root, text="Click Me", command=on_button_click_2)
+button_2 = tk.Button(root, text="GRAYSCALE", command=grayscale)
 button_2.pack(pady=30)
 
-button_3 = tk.Button(root, text="Click Me", command=on_button_click_3)
+button_3 = tk.Button(root, text="ORIGINAL", command=original)
 button_3.pack(pady=30)
 
 
