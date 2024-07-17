@@ -12,9 +12,6 @@ def camera():
     capture_nugget.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
     capture_nugget.set(cv2.CAP_PROP_FPS, 60)
 
-    if not capture_nugget.isOpened():
-        sys.exit()
-
     return  capture_nugget
 
 def filename(mode):
