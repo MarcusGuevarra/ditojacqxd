@@ -1,5 +1,5 @@
 import tkinter as tk
-from cameranugget import camera, capture_image, currentframe, close_camera
+#from cameranugget import camera, capture_image, currentframe, close_camera
 from AImodel import edge_detection, original, grayscale
 
 # Create the main window
@@ -13,15 +13,6 @@ root.resizable(True,True)
 # Create a label
 label = tk.Label(root, text="Select which type of images to process through the AI:")
 label.pack(pady=20)
-
-camera()
-while True:
-    if currentframe <= 5:
-        camera_button = tk.Button(root, text="CAPTURE", command=capture_image)
-        camera_button.pack(pady=30)
-    else:
-        close_camera()
-        break
 
 
 def image_modes():
