@@ -1,36 +1,17 @@
 import tkinter as tk
 from tkinter import Button
 from PIL import Image, ImageTk
-from camera import Camera
+from kamera import Camera
 import AI_model as ai
 
-def aimod():
-    # Create the main window
-    aim = tk.Toplevel(root)
-    aim.title("AI model GUI")
 
-    # Set the size of the window
-    aim.geometry("750x500")
-    aim.resizable(True, True)
-
-
-    # Create a label
-    ailabel = tk.Label(aim, text="Select Image Processing Technique", font=("Arial",14))
-    ailabel.pack(pady=30)
-
-    orig_button = tk.Button(aim, text="ORIGINAL", command=ai.original)
-    orig_button.pack(pady=30)
-
-    gray_button = tk.Button(aim, text="GRAYSCALE", command=ai.grayscale)
-    gray_button.pack(pady=30)
-
-    edge_button = tk.Button(aim, text="EDGE DETECTION", command=ai.edge_detection)
-    edge_button.pack(pady=30)
-
-    next_respondent_button = tk.Button(aim, text="Next Respondent", command=aim.destroy)
-    next_respondent_button.pack(pady=30)
-
-    aim.mainloop()
+def center_window(window):
+    window.update_idletasks()
+    width = window.winfo_width()
+    height = window.winfo_height()
+    x = (window.winfo_screenwidth() // 2) - (width // 2)
+    y = (window.winfo_screenheight() // 2) - (height // 2)
+    window.geometry(f'{width}x{height}+{x}+{y}')
 
 
 class CameraApp:
@@ -49,10 +30,10 @@ class CameraApp:
         self.btn_snapshot = Button(window, text="Snapshot", width=50, command=self.snapshot)
         self.btn_snapshot.pack(anchor=tk.CENTER, expand=True)
 
-        self.ai_model_button = tk.Button(root, text="AI_model", command=aimod)
+        self.ai_model_button = tk.Button(root, text="AI_model", width=50, command=lambda: [self.window.withdraw(), self.aimod()])
         self.ai_model_button.pack(anchor=tk.CENTER, expand=True)
 
-        self.btn_quit = Button(window, text="Stop", width=50, command=self.quit)
+        self.btn_quit = Button(window, text="Exit", width=50, command=self.quit)
         self.btn_quit.pack(anchor=tk.CENTER, expand=True)
 
         self.window.protocol("WM_DELETE_WINDOW", self.on_closing)
@@ -78,19 +59,45 @@ class CameraApp:
 
     def snapshot(self):
         if self.camera:
-            self.camera.save_frame("snapshot.png")
+            self.camera.save_frame()
 
     def quit(self):
         self.on_closing()
         self.window.quit()
 
+    def aimod(self):
+        # Create the main window
+        aim = tk.Toplevel(root)
+        aim.title("AI model GUI")
+
+        # Set the size of the window
+        aim.geometry("750x500")
+        aim.resizable(True, True)
+
+        # Create a label
+        ai_label = tk.Label(aim, text="Select Image Processing Technique", font=("Arial", 14))
+        ai_label.pack(pady=30)
+
+        orig_button = tk.Button(aim, text="ORIGINAL", command=ai.original)
+        orig_button.pack(pady=30)
+
+        gray_button = tk.Button(aim, text="GRAYSCALE", command=ai.grayscale)
+        gray_button.pack(pady=30)
+
+        edge_button = tk.Button(aim, text="EDGE DETECTION", command=ai.edge_detection)
+        edge_button.pack(pady=30)
+
+        next_respondent_button = tk.Button(aim, text="Next Respondent", command=lambda: [aim.destroy(), self.window.deiconify(), self.camera.new_respondent()])
+        next_respondent_button.pack(pady=30)
+
+        aim.mainloop()
 
     def on_closing(self):
         if self.camera:
             del self.camera
         self.window.destroy()
 
+
 root = tk.Tk()
 app = CameraApp(root, "Tkinter Camera App")
-
 
