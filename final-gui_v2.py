@@ -21,6 +21,13 @@ class CameraApp:
         self.camera = None
         self.camera_run = False
 
+        # Title
+        text_var = tk.StringVar()
+        text_var.set("AUTOMATIC FOOD OIL DETECTION: AN AI AND IMAGE PROCESSING APPROACH " +
+             "FOR QUALITY CONTROL AND DIETARY MONITORING")
+        label = tk.Label(root, textvariable=text_var, font=("Arial", 16, "bold"), wraplength=500)
+        label.pack(pady=50)
+
         self.canvas = tk.Canvas(window)
         self.canvas.pack()
 
