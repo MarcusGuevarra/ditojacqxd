@@ -30,7 +30,7 @@ class CameraApp:
         self.btn_snapshot = Button(window, text="Snapshot", width=50, command=self.snapshot)
         self.btn_snapshot.pack(anchor=tk.CENTER, expand=True)
 
-        self.ai_model_button = tk.Button(root, text="AI_model", width=50, command=lambda: [self.window.withdraw(), self.aimod()])
+        self.ai_model_button = tk.Button(root, text="AI model", width=50, command=lambda: [self.window.withdraw(), self.aimod()])
         self.ai_model_button.pack(anchor=tk.CENTER, expand=True)
 
         self.btn_quit = Button(window, text="Exit", width=50, command=self.quit)
@@ -75,7 +75,7 @@ class CameraApp:
         aim.resizable(True, True)
 
         # Create a label
-        ai_label = tk.Label(aim, text="Select Image Processing Technique", font=("Arial", 14))
+        ai_label = tk.Label(aim, text="Select Image Processing Technique for the AI dataset", font=("Arial", 14))
         ai_label.pack(pady=30)
 
         orig_button = tk.Button(aim, text="ORIGINAL", command=ai.original)
@@ -99,5 +99,5 @@ class CameraApp:
 
 
 root = tk.Tk()
-app = CameraApp(root, "Tkinter Camera App")
+app = CameraApp(root, "Automatic Oil Detection")
 
