@@ -22,11 +22,11 @@ class CameraApp:
         self.camera_run = False
 
         # Title
-        text_var = tk.StringVar()
-        text_var.set("AUTOMATIC FOOD OIL DETECTION: AN AI AND IMAGE PROCESSING APPROACH " +
+        self.text_var = tk.StringVar()
+        self.text_var.set("AUTOMATIC FOOD OIL DETECTION: AN AI AND IMAGE PROCESSING APPROACH " +
              "FOR QUALITY CONTROL AND DIETARY MONITORING")
-        label = tk.Label(root, textvariable=text_var, font=("Arial", 16, "bold"), wraplength=500)
-        label.pack(pady=50)
+        self.title_label = Label(window, textvariable=text_var, font=("Arial", 16, "bold"), wraplength=500)
+        self.title_label.pack(pady=50)
 
         self.canvas = tk.Canvas(window)
         self.canvas.pack()
@@ -37,7 +37,7 @@ class CameraApp:
         self.btn_snapshot = Button(window, text="Snapshot", width=50, command=self.snapshot)
         self.btn_snapshot.pack(anchor=tk.CENTER, expand=True)
 
-        self.ai_model_button = tk.Button(root, text="AI model", width=50, command=lambda: [self.window.withdraw(), self.aimod()])
+        self.ai_model_button = Button(root, text="AI model", width=50, command=lambda: [self.window.withdraw(), self.aimod()])
         self.ai_model_button.pack(anchor=tk.CENTER, expand=True)
 
         self.btn_quit = Button(window, text="Exit", width=50, command=self.quit)
