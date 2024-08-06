@@ -5,6 +5,7 @@ from tkinter import messagebox
 currentframe = 1
 respondent = 1
 
+
 class Camera:
     def __init__(self, video_source=0, width=1080, height=1080, fps=60):
         self.video_source = video_source
@@ -26,11 +27,11 @@ class Camera:
         if self.vid.isOpened():
             ret, image = self.vid.read()
             if ret:
-                return (ret, cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+                return ret, cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             else:
-                return (ret, None)
+                return ret, None
         else:
-            return (None, None)
+            return None, None
 
     def __del__(self):
         if self.vid.isOpened():
@@ -51,7 +52,8 @@ class Camera:
             currentframe += 1
 
     def imagename(self, mode):
-        folder = './data/' + mode + '/survey_data/' + str(respondent) + '/'
+        from AI_model import resource_path
+        folder = resource_path('data/' + mode + '/test/' + str(respondent) + '/')
         if not os.path.exists(folder):
             os.makedirs(folder)
         image_name = folder + '2_' + str(currentframe) + '.png'
@@ -62,10 +64,8 @@ class Camera:
         ret, image = self.vid.read()
         if ret:
             cv2.imwrite(image_name, image)
-            #print('Saved ' + image_name)
-
 
     def new_respondent(self):
         global respondent
         respondent += 1
-        messagebox.showinfo('Respondent', 'Current Respondent: ' + str(respondent))
+        messagebox.showinfo('Information', 'Current Respondent: ' + str(respondent))
