@@ -69,7 +69,7 @@ def build_model():
     return model
 
 
-def train_model(model, ds_train, epochs=1):
+def train_model(model, ds_train, epochs=17):
     model.fit(ds_train, epochs=epochs, verbose=2)
     return model
 
